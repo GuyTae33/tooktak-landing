@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#2563eb" />
+  <title>툭딱 - 시공 현장을 더 가볍게</title>
+  <meta name="description" content="시공 기사와 인테리어 업체를 위한 현장 관리 PWA. 시공 건 관리, 푸시 알림, 정산 추적을 한 화면에서. 툭딱." />
+
+  <!-- canonical URL: 실제 배포 도메인 확정 시 교체 -->
+  <!-- <link rel="canonical" href="https://tooktak-landing.example.com/" /> -->
+
+  <!-- favicon: 실제 파비콘 추가 시 교체 -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="툭딱 - 시공 현장을 더 가볍게" />
+  <meta property="og:description" content="시공 기사와 인테리어 업체를 위한 현장 관리 PWA. 카톡·전화·수기장부 대신 한 화면 통합." />
+  <meta property="og:image" content="assets/og-image-placeholder.svg" />
+  <!-- og:url: 실제 배포 도메인 확정 시 교체 -->
+  <!-- <meta property="og:url" content="https://tooktak-landing.example.com/" /> -->
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="툭딱 - 시공 현장을 더 가볍게" />
+  <meta name="twitter:description" content="시공 기사와 인테리어 업체를 위한 현장 관리 PWA." />
+  <meta name="twitter:image" content="assets/og-image-placeholder.svg" />
+
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Segoe UI", Roboto, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+    button { font-family: inherit; cursor: pointer; }
+
+    :focus-visible {
+      outline: 2px solid #2563eb;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* ===== Layout ===== */
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    section { padding: 64px 0; }
+    @media (min-width: 768px) {
+      section { padding: 96px 0; }
+    }
+
+    h1, h2, h3 { line-height: 1.3; margin: 0 0 16px; letter-spacing: -0.02em; }
+    h1 { font-size: 32px; font-weight: 800; }
+    h2 { font-size: 26px; font-weight: 700; }
+    h3 { font-size: 18px; font-weight: 700; }
+    @media (min-width: 768px) {
+      h1 { font-size: 48px; }
+      h2 { font-size: 34px; }
+      h3 { font-size: 20px; }
+    }
+    p { margin: 0 0 12px; color: #334155; }
+
+    /* ===== Buttons ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      border: 2px solid transparent;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      min-height: 48px;
+    }
+    .btn-primary {
+      background: #2563eb;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    }
+    .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .btn-secondary {
+      background: #ffffff;
+      color: #2563eb;
+      border-color: #2563eb;
+    }
+    .btn-secondary:hover { background: #eff6ff; }
+
+    /* ===== Header ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 20px;
+      color: #2563eb;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .header-cta {
+      padding: 8px 16px;
+      font-size: 14px;
+      min-height: 36px;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+      padding-top: 56px;
+    }
+    .hero-grid {
+      display: grid;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (min-width: 880px) {
+      .hero-grid { grid-template-columns: 1.1fr 1fr; gap: 56px; }
+    }
+    .hero h1 .accent { color: #2563eb; }
+    .hero-lead {
+      font-size: 18px;
+      color: #475569;
+      margin-bottom: 28px;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-mockup {
+      max-width: 320px;
+      margin: 0 auto;
+      filter: drop-shadow(0 20px 40px rgba(37, 99, 235, 0.18));
+    }
+
+    /* ===== Audience ===== */
+    .audience-grid { display: grid; gap: 20px; }
+    @media (min-width: 768px) {
+      .audience-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    }
+    .audience-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 28px;
+    }
+    .audience-card h3 {
+      color: #2563eb;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .audience-card ul { list-style: none; padding: 0; margin: 16px 0 0; }
+    .audience-card li {
+      padding: 8px 0 8px 24px;
+      position: relative;
+      color: #334155;
+    }
+    .audience-card li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #2563eb;
+      font-weight: 800;
+    }
+
+    /* ===== Features ===== */
+    .features-grid { display: grid; gap: 20px; }
+    @media (min-width: 640px) {
+      .features-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 980px) {
+      .features-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .feature-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 24px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+      border-color: #2563eb;
+    }
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      background: #eff6ff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: #2563eb;
+    }
+    .feature-card h3 { margin-bottom: 8px; }
+    .feature-card p { font-size: 15px; margin: 0; }
+
+    /* ===== Before/After ===== */
+    .compare { background: #f8fafc; }
+    .compare-grid { display: grid; gap: 20px; }
+    @media (min-width: 768px) {
+      .compare-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+    }
+    .compare-card {
+      border-radius: 14px;
+      padding: 28px;
+      border: 1px solid #e2e8f0;
+      background: #ffffff;
+    }
+    .compare-card.before { border-color: #fecaca; background: #fff1f2; }
+    .compare-card.after { border-color: #bfdbfe; background: #eff6ff; }
+    .compare-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+    }
+    .compare-card.before h3 { color: #b91c1c; }
+    .compare-card.after h3 { color: #1d4ed8; }
+    .compare-card ul { list-style: none; padding: 0; margin: 14px 0 0; }
+    .compare-card li {
+      padding: 8px 0 8px 26px;
+      position: relative;
+      color: #334155;
+    }
+    .compare-card.before li::before {
+      content: "✕";
+      position: absolute; left: 0;
+      color: #dc2626; font-weight: 800;
+    }
+    .compare-card.after li::before {
+      content: "✓";
+      position: absolute; left: 0;
+      color: #2563eb; font-weight: 800;
+    }
+
+    /* ===== Install ===== */
+    .install-grid { display: grid; gap: 20px; }
+    @media (min-width: 768px) {
+      .install-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    }
+    .install-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 28px;
+      background: #ffffff;
+      position: relative;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .install-card.current {
+      border-color: #2563eb;
+      border-width: 2px;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.12);
+    }
+    .install-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .current-badge {
+      display: none;
+      position: absolute;
+      top: -12px;
+      right: 16px;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+    .install-card.current .current-badge { display: inline-block; }
+    .install-card ol {
+      padding-left: 20px;
+      margin: 14px 0 20px;
+      color: #334155;
+    }
+    .install-card ol li { margin-bottom: 8px; }
+    .install-card .btn { width: 100%; }
+
+    /* ===== FAQ ===== */
+    .faq-list { max-width: 760px; margin: 0 auto; }
+    .faq-item {
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 6px 20px;
+      margin-bottom: 12px;
+      background: #ffffff;
+    }
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 14px 0;
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      color: #2563eb;
+      font-size: 22px;
+      font-weight: 400;
+      transition: transform 0.2s ease;
+      line-height: 1;
+    }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-item p { padding: 0 0 16px; margin: 0; color: #475569; }
+
+    /* ===== Bottom CTA ===== */
+    .bottom-cta { background: #2563eb; color: #ffffff; text-align: center; }
+    .bottom-cta h2 { color: #ffffff; }
+    .bottom-cta p { color: #dbeafe; margin-bottom: 28px; }
+    .bottom-cta .btn-primary {
+      background: #ffffff;
+      color: #2563eb;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+    .bottom-cta .btn-primary:hover { background: #f8fafc; }
+    .bottom-cta .btn-secondary {
+      background: transparent;
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+    .bottom-cta .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+    .bottom-ctas {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ===== Footer ===== */
+    .site-footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 40px 0 32px;
+      font-size: 14px;
+    }
+    .footer-grid { display: grid; gap: 20px; }
+    @media (min-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .site-footer h4 {
+      color: #ffffff;
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .site-footer a {
+      color: #cbd5e1;
+      text-decoration: none;
+      display: block;
+      padding: 4px 0;
+    }
+    .site-footer a:hover { color: #ffffff; }
+    .footer-copy {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid #1e293b;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    /* ===== Section Header ===== */
+    .section-head { text-align: center; margin-bottom: 40px; }
+    .section-head h2 { margin-bottom: 12px; }
+    .section-head p { color: #64748b; }
+
+    /* ===== Skip link ===== */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: #2563eb;
+      color: #fff;
+      padding: 10px 16px;
+      z-index: 100;
+    }
+    .skip-link:focus { left: 8px; top: 8px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="brand" aria-label="툭딱 홈">tooktak</a>
+      <a class="btn btn-primary header-cta"
+         href="https://tooktakproject.web.app/"
+         target="_blank" rel="noopener noreferrer">앱 열기</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1) 히어로 -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div>
+          <h1 id="hero-title">시공 현장을 더 가볍게,<br/><span class="accent">툭딱</span></h1>
+          <p class="hero-lead">시공 기사와 인테리어 업체를 위한 현장 관리 PWA.<br/>
+            카톡·전화·수기장부 대신, 한 화면에서 모든 시공 건을 관리하세요.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary"
+               href="https://tooktakproject.web.app/"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="툭딱 앱 무료로 시작하기 (새 창)">지금 무료로 시작하기</a>
+            <a class="btn btn-secondary" href="#install">설치 방법 보기</a>
+          </div>
+        </div>
+        <div class="hero-mockup-wrap">
+          <img class="hero-mockup"
+               src="assets/mockup-placeholder.svg"
+               alt="툭딱 앱 화면 목업 - 시공 건 목록과 일정이 표시된 모바일 화면"
+               loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) 누구를 위한 -->
+    <section aria-labelledby="audience-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="audience-title">누구를 위한 앱인가요?</h2>
+          <p>시공 현장에서 일하는 모두를 위해 만들었습니다.</p>
+        </div>
+        <div class="audience-grid">
+          <div class="audience-card">
+            <h3>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+              시공 기사님
+            </h3>
+            <ul>
+              <li>오늘 할 일과 다음 일정이 한 화면에</li>
+              <li>도면·메모·완료 사진을 현장에서 바로 첨부</li>
+              <li>정산 받을 금액을 시공 건별로 자동 추적</li>
+            </ul>
+          </div>
+          <div class="audience-card">
+            <h3>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/>
+              </svg>
+              인테리어 업체
+            </h3>
+            <ul>
+              <li>여러 기사의 일정과 진행 상태를 한눈에</li>
+              <li>시공 배정·거절·완료를 푸시 알림으로 즉시 파악</li>
+              <li>월별 시공 건과 정산을 깔끔하게 정리</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) 핵심 기능 -->
+    <section aria-labelledby="features-title" style="background:#f8fafc">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="features-title">핵심 기능</h2>
+          <p>현장에서 진짜 필요한 것만 담았습니다.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <h3>시공 건 관리</h3>
+            <p>등록·배정·진행·완료까지, 시공 건의 모든 단계를 한 화면에서 관리합니다.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+              </svg>
+            </div>
+            <h3>푸시 알림</h3>
+            <p>새 배정·일정 변경·완료 확인을 실시간 푸시로. 카톡을 일일이 확인할 필요 없습니다.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <h3>정산 추적</h3>
+            <p>시공 건별 단가·정산 상태를 자동 집계. 월말마다 수기로 정리할 필요 없습니다.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2"/>
+                <line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+            </div>
+            <h3>모바일 최적화</h3>
+            <p>현장에서 한 손으로. 설치 없이 브라우저에서 바로, 홈 화면에 추가하면 앱처럼.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) Before/After -->
+    <section class="compare" aria-labelledby="compare-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="compare-title">기존 방식 vs 툭딱</h2>
+          <p>흩어진 정보가 한 화면으로 모입니다.</p>
+        </div>
+        <div class="compare-grid">
+          <div class="compare-card before">
+            <h3>기존 — 카톡·전화·수기장부</h3>
+            <ul>
+              <li>카톡방마다 흩어진 도면과 일정</li>
+              <li>전화로 일정 확인, 받지 못하면 누락</li>
+              <li>월말마다 영수증·수첩으로 정산 재계산</li>
+              <li>"누가 어디 갔는지" 매번 묻고 확인</li>
+            </ul>
+          </div>
+          <div class="compare-card after">
+            <h3>툭딱 — 한 화면 통합</h3>
+            <ul>
+              <li>시공 건·도면·메모가 한 곳에</li>
+              <li>일정과 배정 상태가 푸시로 즉시 전달</li>
+              <li>시공 건별 정산이 자동으로 집계</li>
+              <li>기사 위치·진행 상태를 실시간 확인</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) 설치 방법 -->
+    <section id="install" aria-labelledby="install-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="install-title">설치 방법</h2>
+          <p>앱스토어에 없어도 괜찮습니다. 홈 화면에 추가하면 앱처럼 쓸 수 있습니다.</p>
+        </div>
+        <div class="install-grid">
+          <div class="install-card" id="install-ios" data-os="ios">
+            <span class="current-badge" aria-label="현재 사용 중인 기기">현재 기기</span>
+            <h3>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M16.36 1.43c.08.97-.28 1.92-.86 2.6-.59.68-1.55 1.21-2.49 1.14-.1-.94.36-1.92.93-2.55.63-.71 1.7-1.24 2.42-1.19zM20.5 17.6c-.36.83-.79 1.6-1.3 2.32-.69.96-1.25 1.62-1.69 1.99-.68.57-1.41.87-2.19.89-.56 0-1.24-.16-2.02-.49-.79-.33-1.51-.49-2.18-.49-.7 0-1.45.16-2.24.49-.79.33-1.43.5-1.92.52-.74.03-1.49-.27-2.24-.92-.48-.41-1.07-1.09-1.78-2.06-.76-1.03-1.39-2.22-1.88-3.58-.53-1.48-.8-2.91-.8-4.3 0-1.59.34-2.96 1.03-4.11.54-.92 1.27-1.65 2.18-2.18.92-.53 1.91-.81 2.97-.83.6 0 1.39.19 2.36.55.97.36 1.6.55 1.87.55.21 0 .9-.22 2.06-.65 1.1-.4 2.03-.57 2.79-.5 2.06.17 3.61.98 4.64 2.45-1.84 1.12-2.75 2.68-2.73 4.69.02 1.57.59 2.87 1.7 3.9.5.48 1.06.85 1.69 1.12-.13.4-.28.78-.44 1.15z"/>
+              </svg>
+              iOS Safari
+            </h3>
+            <ol>
+              <li>Safari 브라우저로 툭딱을 엽니다</li>
+              <li>하단의 <strong>공유</strong> 아이콘을 누릅니다</li>
+              <li><strong>홈 화면에 추가</strong>를 선택합니다</li>
+              <li>이름을 확인하고 <strong>추가</strong>를 누릅니다</li>
+            </ol>
+            <a class="btn btn-primary"
+               href="https://tooktakproject.web.app/"
+               target="_blank" rel="noopener noreferrer">툭딱 열기</a>
+          </div>
+          <div class="install-card" id="install-android" data-os="android">
+            <span class="current-badge" aria-label="현재 사용 중인 기기">현재 기기</span>
+            <h3>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.6 9.48l1.84-3.18a.5.5 0 0 0-.87-.5l-1.86 3.23A11.43 11.43 0 0 0 12 7.5c-1.97 0-3.81.45-5.71 1.53L4.43 5.8a.5.5 0 0 0-.87.5L5.4 9.48A10.86 10.86 0 0 0 1 18h22a10.86 10.86 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/>
+              </svg>
+              Android Chrome
+            </h3>
+            <ol>
+              <li>Chrome 브라우저로 툭딱을 엽니다</li>
+              <li>주소창 옆 <strong>메뉴(⋮)</strong>를 누릅니다</li>
+              <li><strong>홈 화면에 추가</strong> 또는 <strong>앱 설치</strong>를 선택합니다</li>
+              <li>이름을 확인하고 <strong>추가</strong>를 누릅니다</li>
+            </ol>
+            <a class="btn btn-primary"
+               href="https://tooktakproject.web.app/"
+               target="_blank" rel="noopener noreferrer">툭딱 열기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) FAQ -->
+    <section aria-labelledby="faq-title" style="background:#f8fafc">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="faq-title">자주 묻는 질문</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>정말 무료인가요?</summary>
+            <p>네, 현재 툭딱은 무료로 제공됩니다. 가입과 사용에 별도 비용이 들지 않습니다. 향후 유료 정책이 도입될 경우 사전에 안내드립니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary>앱스토어 / 플레이스토어에서 받을 수 있나요?</summary>
+            <p>툭딱은 PWA(웹앱)로, 별도 앱스토어 설치 없이 브라우저에서 바로 사용할 수 있습니다. 위 "설치 방법"을 따라 홈 화면에 추가하면 일반 앱처럼 쓸 수 있습니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary>어떤 기기에서 쓸 수 있나요?</summary>
+            <p>iOS Safari, Android Chrome, 데스크톱 브라우저(Chrome, Edge, Safari 등) 최신 버전에서 정상 동작합니다. 현장에서는 모바일 사용을 권장합니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary>가입은 어떻게 하나요?</summary>
+            <p>"지금 무료로 시작하기" 버튼을 누르면 가입 화면으로 이동합니다. 시공 기사/업체 구분을 선택하고 기본 정보를 입력하면 바로 사용할 수 있습니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary>데이터는 안전하게 보관되나요?</summary>
+            <p>모든 데이터는 암호화된 통신으로 전송되며, 안전한 클라우드 인프라(Firebase)에 저장됩니다. 자세한 내용은 개인정보처리방침을 확인해 주세요.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7) 하단 CTA -->
+    <section class="bottom-cta" aria-labelledby="bottom-cta-title">
+      <div class="container">
+        <h2 id="bottom-cta-title">지금 바로 시작하세요</h2>
+        <p>설치 없이 1분이면 충분합니다.</p>
+        <div class="bottom-ctas">
+          <a class="btn btn-primary"
+             href="https://tooktakproject.web.app/"
+             target="_blank" rel="noopener noreferrer">무료로 시작하기</a>
+          <!-- TODO: 오픈채팅 URL 확정 후 href 교체 -->
+          <a class="btn btn-secondary"
+             href="#"
+             data-role="openchat"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="오픈채팅 문의 (URL 확정 예정)">오픈채팅 문의</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 8) 푸터 -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>tooktak</h4>
+          <p style="color:#94a3b8; margin:0;">시공 현장을 더 가볍게,<br/>현장 관리 PWA</p>
+        </div>
+        <div>
+          <h4>운영팀</h4>
+          <!-- TODO: 운영팀명 / 사업자 정보 확정 시 교체 -->
+          <p style="color:#94a3b8; margin:0;">루마네 시스템</p>
+        </div>
+        <div>
+          <h4>문의</h4>
+          <!-- TODO: 실제 문의 이메일 확정 후 href / 텍스트 교체 -->
+          <a href="#" data-role="contact-email" aria-label="문의 이메일 (확정 예정)">문의하기</a>
+          <a href="#" data-role="privacy" aria-label="개인정보처리방침 (확정 예정)">개인정보처리방침</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        © <span id="year"></span> 툭딱. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      function detectOS() {
+        var ua = (navigator.userAgent || '').toLowerCase();
+        var platform = (navigator.platform || '').toLowerCase();
+        var isIPad = /ipad/.test(ua) || (platform === 'macintel' && navigator.maxTouchPoints > 1);
+        if (/iphone|ipod/.test(ua) || isIPad) return 'ios';
+        if (/android/.test(ua)) return 'android';
+        return null;
+      }
+
+      var os = detectOS();
+      if (os) {
+        var card = document.getElementById('install-' + os);
+        if (card) card.classList.add('current');
+      }
+    })();
+  </script>
+</body>
+</html>

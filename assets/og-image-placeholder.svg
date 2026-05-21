@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="툭딱 OG 이미지 placeholder">
+  <title>툭딱 OG 이미지 (placeholder)</title>
+  <desc>1200x630 OG 이미지 placeholder - 실제 디자인 시안으로 교체 예정</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- 장식 원 -->
+  <circle cx="980" cy="120" r="200" fill="#ffffff" opacity="0.06"/>
+  <circle cx="1080" cy="500" r="160" fill="#ffffff" opacity="0.05"/>
+  <circle cx="120" cy="540" r="120" fill="#ffffff" opacity="0.05"/>
+
+  <!-- 브랜드 -->
+  <text x="80" y="240" font-family="-apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif" font-size="120" fill="#ffffff" font-weight="800" letter-spacing="-4">tooktak</text>
+
+  <!-- 슬로건 -->
+  <text x="80" y="340" font-family="-apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif" font-size="48" fill="#ffffff" font-weight="700" letter-spacing="-1">시공 현장을 더 가볍게</text>
+
+  <!-- 서브 -->
+  <text x="80" y="400" font-family="-apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif" font-size="28" fill="#dbeafe" font-weight="500">시공 기사와 인테리어 업체를 위한 현장 관리 PWA</text>
+
+  <!-- 우측 휴대폰 일러스트 -->
+  <g transform="translate(820, 130)">
+    <rect x="0" y="0" width="220" height="420" rx="32" ry="32" fill="#0f172a"/>
+    <rect x="8" y="8" width="204" height="404" rx="26" ry="26" fill="#ffffff"/>
+    <rect x="80" y="14" width="60" height="14" rx="7" ry="7" fill="#0f172a"/>
+
+    <rect x="8" y="50" width="204" height="40" fill="#2563eb"/>
+    <text x="28" y="76" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="14" fill="#ffffff" font-weight="800">tooktak</text>
+
+    <rect x="24" y="110" width="172" height="60" rx="8" ry="8" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="24" y="110" width="3" height="60" fill="#2563eb"/>
+    <rect x="36" y="124" width="120" height="8" rx="2" fill="#0f172a"/>
+    <rect x="36" y="142" width="80" height="6" rx="2" fill="#94a3b8"/>
+
+    <rect x="24" y="180" width="172" height="60" rx="8" ry="8" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="24" y="180" width="3" height="60" fill="#94a3b8"/>
+    <rect x="36" y="194" width="110" height="8" rx="2" fill="#0f172a"/>
+    <rect x="36" y="212" width="70" height="6" rx="2" fill="#94a3b8"/>
+
+    <rect x="24" y="250" width="172" height="60" rx="8" ry="8" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="24" y="250" width="3" height="60" fill="#22c55e"/>
+    <rect x="36" y="264" width="100" height="8" rx="2" fill="#0f172a"/>
+    <rect x="36" y="282" width="60" height="6" rx="2" fill="#94a3b8"/>
+
+    <rect x="24" y="332" width="172" height="44" rx="8" ry="8" fill="#0f172a"/>
+    <rect x="36" y="346" width="60" height="6" rx="2" fill="#94a3b8"/>
+    <rect x="36" y="358" width="100" height="10" rx="2" fill="#ffffff"/>
+  </g>
+
+  <!-- 하단 도메인 -->
+  <text x="80" y="560" font-family="-apple-system, sans-serif" font-size="22" fill="#bfdbfe" font-weight="600">tooktakproject.web.app</text>
+</svg>

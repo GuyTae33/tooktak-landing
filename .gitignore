@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Build / cache
+dist/
+build/
+.cache/
+.parcel-cache/
+
+# AI 백업 (전역 규칙)
+.ai-backups/
