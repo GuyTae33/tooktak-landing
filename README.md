@@ -1,6 +1,6 @@
-# 툭딱 랜딩 페이지
+# tooktak 랜딩 페이지
 
-시공 현장 관리 PWA "툭딱(tooktak)" 의 홍보용 단독 랜딩 페이지.
+시공 현장 관리 PWA "tooktak(tooktak)" 의 홍보용 단독 랜딩 페이지.
 
 - 단일 파일 HTML (내장 CSS / JS)
 - 외부 라이브러리·CDN·npm install 없음
@@ -45,7 +45,7 @@ VSCode 사용 시 **Live Server** 확장으로 `index.html` 우클릭 → "Open 
 cd C:\Users\kateb\tooktak-landing
 git init
 git add .
-git commit -m "feat: 툭딱 랜딩 페이지 초기 버전"
+git commit -m "feat: tooktak 랜딩 페이지 초기 버전"
 git branch -M main
 git remote add origin https://github.com/<owner>/tooktak-landing.git
 git push -u origin main
