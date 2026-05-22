@@ -270,6 +270,8 @@
       padding: 28px;
       background: #ffffff;
       position: relative;
+      display: flex;
+      flex-direction: column;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .install-card.current {
@@ -303,7 +305,76 @@
       color: #334155;
     }
     .install-card ol li { margin-bottom: 8px; }
-    .install-card .btn { width: 100%; }
+    .install-card .btn { width: 100%; margin-top: auto; }
+
+    /* 설치 카드 — 다른 브라우저 접기 */
+    .install-more {
+      margin: 0 0 18px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 14px;
+    }
+    .install-more summary {
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #2563eb;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .install-more summary::-webkit-details-marker { display: none; }
+    .install-more summary::after {
+      content: "▾";
+      margin-left: auto;
+      transition: transform 0.2s ease;
+    }
+    .install-more[open] summary::after { transform: rotate(180deg); }
+    .install-more .more-body {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #475569;
+      line-height: 1.7;
+    }
+    .install-more .more-body p { margin: 0 0 8px; }
+    .install-more .more-body p:last-child { margin-bottom: 0; }
+    .install-more .more-body strong { color: #0f172a; }
+
+    /* 설치가 안 될 때 안내 */
+    .install-help {
+      margin-top: 24px;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      background: #f8fafc;
+      overflow: hidden;
+    }
+    .install-help summary {
+      cursor: pointer;
+      padding: 18px 24px;
+      font-weight: 700;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .install-help summary::-webkit-details-marker { display: none; }
+    .install-help summary::after {
+      content: "▾";
+      margin-left: auto;
+      font-weight: 400;
+      transition: transform 0.2s ease;
+    }
+    .install-help[open] summary::after { transform: rotate(180deg); }
+    .install-help .help-body {
+      padding: 0 24px 22px;
+      font-size: 0.92rem;
+      color: #475569;
+      line-height: 1.75;
+    }
+    .install-help .help-body ol { padding-left: 22px; margin: 6px 0 14px; }
+    .install-help .help-body li { margin-bottom: 7px; }
+    .install-help .help-body p { margin: 0 0 8px; }
+    .install-help .help-body strong { color: #0f172a; }
 
     /* ===== FAQ ===== */
     .faq-list { max-width: 760px; margin: 0 auto; }
@@ -600,10 +671,17 @@
             </h3>
             <ol>
               <li>Safari 브라우저로 tooktak을 엽니다</li>
-              <li>하단의 <strong>공유</strong> 아이콘을 누릅니다</li>
-              <li><strong>홈 화면에 추가</strong>를 선택합니다</li>
-              <li>이름을 확인하고 <strong>추가</strong>를 누릅니다</li>
+              <li>하단(또는 상단)의 <strong>공유</strong> 아이콘 <span aria-hidden="true">⬆️</span> 을 누릅니다</li>
+              <li>메뉴를 내려 <strong>홈 화면에 추가</strong>를 선택합니다</li>
+              <li>오른쪽 위 <strong>추가</strong>를 누르면 홈 화면에 아이콘이 생깁니다</li>
             </ol>
+            <details class="install-more">
+              <summary>Chrome 등 다른 브라우저로 열었다면?</summary>
+              <div class="more-body">
+                <p>아이폰·아이패드에서는 <strong>Safari로 열어야만</strong> 홈 화면에 추가할 수 있습니다. Chrome·네이버 등 다른 앱에는 추가 메뉴 자체가 없습니다(애플 정책).</p>
+                <p>아래 <strong>tooktak 열기</strong> 버튼을 누른 뒤 주소창을 길게 눌러 <strong>Safari로 열기</strong>를 선택하거나, Safari 앱에서 직접 주소를 입력해 주세요.</p>
+              </div>
+            </details>
             <a class="btn btn-primary"
                href="https://tooktakproject.web.app/"
                target="_blank" rel="noopener noreferrer">tooktak 열기</a>
@@ -620,13 +698,37 @@
               <li>Chrome 브라우저로 tooktak을 엽니다</li>
               <li>주소창 옆 <strong>메뉴(⋮)</strong>를 누릅니다</li>
               <li><strong>홈 화면에 추가</strong> 또는 <strong>앱 설치</strong>를 선택합니다</li>
-              <li>이름을 확인하고 <strong>추가</strong>를 누릅니다</li>
+              <li>이름을 확인하고 <strong>추가</strong>를 누르면 홈 화면에 아이콘이 생깁니다</li>
             </ol>
+            <details class="install-more">
+              <summary>삼성 인터넷·엣지 등 다른 브라우저는?</summary>
+              <div class="more-body">
+                <p><strong>삼성 인터넷</strong> — 하단 <strong>메뉴(≡)</strong> → <strong>현재 페이지 추가</strong> → <strong>홈 화면</strong></p>
+                <p><strong>Microsoft Edge</strong> — 하단 <strong>메뉴(…)</strong> → <strong>휴대전화에 추가</strong> 또는 <strong>앱 설치</strong></p>
+                <p><strong>네이버 웨일</strong> — <strong>메뉴</strong> → <strong>홈 화면에 추가</strong></p>
+                <p><strong>Firefox</strong> — 주소창 옆 <strong>메뉴(⋮)</strong> → <strong>홈 화면에 추가</strong></p>
+                <p>메뉴 이름은 조금씩 달라도 대부분 <strong>"홈 화면에 추가"</strong> 또는 <strong>"앱 설치"</strong> 항목이 있습니다.</p>
+              </div>
+            </details>
             <a class="btn btn-primary"
                href="https://tooktakproject.web.app/"
                target="_blank" rel="noopener noreferrer">tooktak 열기</a>
           </div>
         </div>
+
+        <details class="install-help">
+          <summary>설치 메뉴가 안 보이거나 설치가 안 될 때</summary>
+          <div class="help-body">
+            <p>자동 설치 안내가 안 뜨면 아래를 차례대로 시도해 보세요.</p>
+            <ol>
+              <li>페이지를 <strong>완전히 새로고침</strong>한 뒤 다시 메뉴를 엽니다.</li>
+              <li>브라우저 <strong>메뉴(⋮ 또는 ≡)</strong>를 직접 열어 <strong>"홈 화면에 추가" · "앱 설치"</strong> 항목을 찾습니다. 자동 안내 배너가 없어도 대부분 수동으로 추가됩니다.</li>
+              <li>그래도 항목이 없으면 <strong>Chrome(안드로이드)</strong> 또는 <strong>Safari(아이폰)</strong>로 다시 열어 주세요. 이 두 브라우저가 가장 안정적입니다.</li>
+              <li><strong>시크릿 / 프라이빗 모드</strong>에서는 설치가 제한됩니다. <strong>일반 모드</strong>로 열어 주세요.</li>
+            </ol>
+            <p>설치하지 않아도 브라우저에서 주소로 바로 이용할 수 있습니다 — 홈 화면 추가는 더 편하게 쓰기 위한 선택입니다.</p>
+          </div>
+        </details>
       </div>
     </section>
 
