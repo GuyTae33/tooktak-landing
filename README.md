@@ -1,8 +1,10 @@
 # tooktak 랜딩 페이지
 
-시공 현장 관리 PWA "tooktak(tooktak)" 의 홍보용 단독 랜딩 페이지.
+시공 현장 관리 PWA "tooktak" 의 홍보용 단독 사이트.
 
-- 단일 파일 HTML (내장 CSS / JS)
+- 순수 HTML (내장 CSS / JS), 페이지 2개 구성
+  - **대문(`index.html`)** — 루트 진입점. SNS·오픈채팅 프로필 링크용 인트로 화면
+  - **랜딩(`home.html`)** — 서비스 소개·기능·설치법·FAQ 본문
 - 외부 라이브러리·CDN·npm install 없음
 - 본 앱 저장소(`C:\Users\kateb\tooktak\`)와 완전 분리 — 다른 도메인에서 호스팅
 
@@ -10,7 +12,8 @@
 
 ```
 tooktak-landing/
-├── index.html              # 단일 진입점
+├── index.html              # 대문 페이지 (루트 진입점 — SNS 링크용)
+├── home.html               # 랜딩 페이지 (서비스 소개·기능·설치법·FAQ)
 ├── assets/
 │   ├── mockup-placeholder.svg     # 히어로 앱 목업 (1200x630 비율의 휴대폰 프레임 placeholder)
 │   ├── og-image-placeholder.svg   # OG 이미지 (1200x630 placeholder)
@@ -94,11 +97,12 @@ git push -u origin main
 
 | 위치 | 내용 |
 |---|---|
-| `index.html` `og:url`, `canonical` 주석 | 실제 배포 도메인 |
+| `index.html` / `home.html` `og:url`, `canonical` 주석 | 실제 배포 도메인 |
 | `assets/og-image-placeholder.svg` | 실제 OG 이미지(1200x630 PNG/JPG 권장) |
 | `assets/mockup-placeholder.svg` | 실제 앱 스크린샷 목업 |
 | `assets/favicon.svg` | 실제 파비콘 (브랜드 로고) |
-| 하단 CTA `data-role="openchat"` href | 카카오 오픈채팅 실제 URL |
-| 푸터 `data-role="contact-email"` href | `mailto:실제이메일` |
-| 푸터 `data-role="privacy"` href | 개인정보처리방침 페이지 URL |
-| 푸터 "루마네 시스템" 영역 | 사업자 정보 확정 시 교체 |
+| `home.html` 푸터 `data-role="contact-email"` href | `mailto:실제이메일` |
+| `home.html` 푸터 `data-role="privacy"` href | 개인정보처리방침 페이지 URL |
+| `home.html` 푸터 "루마네 시스템" 영역 | 사업자 정보 확정 시 교체 |
+
+> 하단 CTA 오픈채팅 링크는 `https://open.kakao.com/o/pOhG91vi` 로 연결 완료.
