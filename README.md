@@ -101,8 +101,12 @@ git push -u origin main
 | `assets/og-image-placeholder.svg` | 실제 OG 이미지(1200x630 PNG/JPG 권장) |
 | `assets/mockup-placeholder.svg` | 실제 앱 스크린샷 목업 |
 | `assets/favicon.svg` | 실제 파비콘 (브랜드 로고) |
-| `home.html` 푸터 `data-role="contact-email"` href | `mailto:실제이메일` |
-| `home.html` 푸터 `data-role="privacy"` href | 개인정보처리방침 페이지 URL |
-| `home.html` 푸터 "루마네 시스템" 영역 | 사업자 정보 확정 시 교체 |
+
+### 처리 완료 / 보류
+
+- 문의 이메일: `mailto:rumanesystem@gmail.com` 연결 완료
+- 오픈채팅: `https://open.kakao.com/o/pOhG91vi` 연결 완료
+- 개인정보처리방침: 정책 문서 미확정 — 푸터 링크·FAQ 언급 **임시 제거**. 정책 확정 시 푸터 "문의" 영역에 링크 재추가 필요
+- 운영팀/사업자 정보: 푸터 항목 **제거** (무료 홍보 페이지). 향후 유료화 시 전자상거래법상 사업자정보 표기 재검토 필요
 
 > 하단 CTA 오픈채팅 링크는 `https://open.kakao.com/o/pOhG91vi` 로 연결 완료.
