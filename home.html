@@ -123,10 +123,18 @@
       text-decoration: none;
       letter-spacing: -0.02em;
     }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     .header-cta {
       padding: 8px 16px;
       font-size: 14px;
       min-height: 36px;
+    }
+    @media (max-width: 360px) {
+      .header-cta { padding: 8px 12px; }
     }
 
     /* ===== Hero ===== */
@@ -500,9 +508,16 @@
   <header class="site-header">
     <div class="container">
       <a href="index.html" class="brand" aria-label="tooktak 홈">tooktak</a>
-      <a class="btn btn-primary header-cta"
-         href="https://tooktakproject.web.app/"
-         target="_blank" rel="noopener noreferrer">앱 열기</a>
+      <div class="header-actions">
+        <a class="btn btn-secondary header-cta"
+           href="https://open.kakao.com/o/pOhG91vi"
+           data-role="openchat"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="카카오 오픈채팅 문의 (새 창)">오픈채팅</a>
+        <a class="btn btn-primary header-cta"
+           href="https://tooktakproject.web.app/"
+           target="_blank" rel="noopener noreferrer">앱 열기</a>
+      </div>
     </div>
   </header>
 
@@ -520,6 +535,11 @@
                target="_blank" rel="noopener noreferrer"
                aria-label="tooktak 앱 무료로 시작하기 (새 창)">지금 무료로 시작하기</a>
             <a class="btn btn-secondary" href="#install">수동 설치 방법</a>
+            <a class="btn btn-secondary"
+               href="https://open.kakao.com/o/pOhG91vi"
+               data-role="openchat"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="카카오 오픈채팅 문의 (새 창)">오픈채팅 문의</a>
           </div>
         </div>
         <div class="hero-mockup-wrap">
