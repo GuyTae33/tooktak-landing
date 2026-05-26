@@ -121,26 +121,6 @@
     .enter-btn:active { transform: translateY(0); }
     .enter-btn svg { width: 18px; height: 18px; }
 
-    /* ===== 핵심 기능 칩 ===== */
-    .chips {
-      list-style: none;
-      margin: 24px 0 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-    }
-    .chip {
-      padding: 7px 15px;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      border-radius: 999px;
-      font-size: 0.86rem;
-      font-weight: 600;
-      color: #ffffff;
-    }
-
     /* ===== 진입 애니메이션 ===== */
     .reveal {
       opacity: 0;
@@ -150,7 +130,6 @@
     .reveal.d1 { animation-delay: 0.08s; }
     .reveal.d2 { animation-delay: 0.16s; }
     .reveal.d3 { animation-delay: 0.26s; }
-    .reveal.d4 { animation-delay: 0.36s; }
     @keyframes rise {
       to { opacity: 1; transform: translateY(0); }
     }
@@ -178,13 +157,7 @@
       <p class="tagline reveal d2">시공 현장을 더 가볍게</p>
       <p class="sub reveal d2">시공 기사와 인테리어 업체를 위한 현장 관리 앱</p>
 
-      <ul class="chips reveal d3" aria-label="tooktak 핵심 기능">
-        <li class="chip">시공 건 관리</li>
-        <li class="chip">푸시 알림</li>
-        <li class="chip">정산 추적</li>
-      </ul>
-
-      <a class="enter-btn reveal d4" href="home.html" aria-label="tooktak 소개 페이지 둘러보기">
+      <a class="enter-btn reveal d3" href="home.html" aria-label="tooktak 소개 페이지 둘러보기">
         tooktak 둘러보기
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
