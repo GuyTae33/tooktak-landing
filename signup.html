@@ -384,17 +384,7 @@
                 <input type="radio" name="gender" value="female" />
                 <span class="pill-body">여성</span>
               </label>
-              <label class="radio-pill">
-                <input type="radio" name="gender" value="other" />
-                <span class="pill-body">기타</span>
-              </label>
             </div>
-          </div>
-
-          <div class="field">
-            <label class="label" for="f-residence">거주지<span class="opt">선택</span></label>
-            <input class="input" type="text" id="f-residence" name="residence" maxlength="60"
-                   placeholder="예) 서울 강남구 / 경기 성남시" />
           </div>
 
           <div class="field">
@@ -405,9 +395,21 @@
           </div>
 
           <div class="field">
+            <label class="label" for="f-residence">거주지<span class="opt">선택</span></label>
+            <input class="input" type="text" id="f-residence" name="residence" maxlength="60"
+                   placeholder="예) 서울 강남구 / 경기 성남시" />
+          </div>
+
+          <div class="field">
             <label class="label" for="f-experience">경력<span class="opt">선택</span></label>
             <input class="input" type="text" id="f-experience" name="experience" maxlength="100"
                    placeholder="예) 5년 / 시스템행거 시공 경력 다수" />
+          </div>
+
+          <div class="field">
+            <label class="label" for="f-message">하고 싶은 말<span class="opt">선택</span></label>
+            <textarea class="textarea" id="f-message" name="message" maxlength="1000"
+                      placeholder="추가로 알려주실 내용이 있으면 자유롭게 적어주세요."></textarea>
           </div>
 
           <!-- 개인정보 이용동의 -->
@@ -517,6 +519,7 @@
         var residence = (fd.get('residence') || '').toString().trim();
         var activeRegions = (fd.get('active_regions') || '').toString().trim();
         var experience = (fd.get('experience') || '').toString().trim();
+        var message = (fd.get('message') || '').toString().trim();
         var consent = !!fd.get('consent');
 
         if (!name)                                     return showError('이름을 입력해 주세요.');
@@ -542,6 +545,7 @@
           residence: residence || null,
           active_regions: activeRegions,
           experience: experience || null,
+          message: message || null,
           consent_at: new Date().toISOString()
         };
 
